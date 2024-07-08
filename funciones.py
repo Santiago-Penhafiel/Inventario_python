@@ -1,4 +1,5 @@
 inventario=[[[]for j in range (2)]for k in range (3)]
+
 def menu():
     global opc
     print("\n\t\t\tMENU")
@@ -88,6 +89,7 @@ def añadirObjetos():
             print("\nOBJETO",i+1)
             print("Ingrese el nombre del objeto a añadir : ",end="")
             nombre=input()
+            #print(material, tipo)
             for nombres in inventario[tipo-1][material-1]:
                 if nombre==nombres[0]:
                     print("\nEl nombre ingresado ya existe")
@@ -229,6 +231,18 @@ def salir():
     if resp=="no":
         opc=0
     elif resp=="si":
+        with open ("inventario.txt","a+") as file:
+            for tipos in inventario:
+                for materiales in tipos:
+                    for objetos in materiales:
+                        for categoria in objetos:
+                            #print(str(categoria))
+                            file.write(str(categoria))
+                            file.write(" ")
+                        file.write("\n")
+                    file.write("\n")
+                file.write("\n")
+        file.close()
         opc=5
     else:
         opc=0
