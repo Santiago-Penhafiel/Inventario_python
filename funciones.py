@@ -194,6 +194,7 @@ def eliminarObjeto():
     return
 
 def imprimirTabla():
+    x=0
     for tipo in inventario:
         for material in tipo:
             if len(material)>0:
@@ -210,11 +211,15 @@ def imprimirTabla():
                     print("(ORO)")
                 else:
                     print("(PLATA)")
-                print("NOMBRE","CANTIDAD","PRECIO",sep="\t\t")
+                print("NOMBRE\t\t","CANTIDAD\t","PRECIO")
                 for objetos in material:
                     for i in range(len(objetos)):
                         print(objetos[i],end="\t\t")
-                    print()                   
+                    print()
+            else:
+                x+=1
+    if x==6:
+        print("Inventario vacio")                   
     return
                     
 def salir():
