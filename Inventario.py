@@ -1,5 +1,6 @@
 import funciones
-opcs={1:funciones.añadir,
+opcs={0:funciones.default,
+      1:funciones.añadir,
       2:funciones.editar,
       3:funciones.eliminar,
       4:funciones.imprimirTabla,

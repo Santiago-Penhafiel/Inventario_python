@@ -1,9 +1,18 @@
 inventario=[[[]for j in range (2)]for k in range (3)]
+import json, os
+try:
+    with open(os.path.dirname(__file__)+"/inventario.json","r") as file:
+        inventario=json.load(file)
+except:
+    0
+
+def default():
+    return
 
 def menu():
     global opc
     print("\n\t\t\tMENU")
-    print("1 Para ingrear nuevos objetos",
+    print("1 Para ingresar nuevos objetos",
           "2 Para editar los objetos",
           "3 Para eliminar los objetos",
           "4 Para ver la lista de objetos",
@@ -201,13 +210,13 @@ def imprimirTabla():
         for material in tipo:
             if len(material)>0:
                 if tipo==inventario[0]:
-                    print("\t\tCOLLARES",end="")
+                    print("\n\t\tCOLLARES",end="")
                     j=0
                 elif tipo==inventario[1]:
-                    print("\t\tPULSERAS",end="")
+                    print("\n\t\tPULSERAS",end="")
                     j=2
                 elif tipo==inventario[2]:
-                    print("\t\tANILLOS",end="")
+                    print("\n\t\tANILLOS",end="")
                     j=3
                 if material==inventario[j][0]:
                     print("(ORO)")
@@ -230,20 +239,13 @@ def salir():
     global opc
     if resp=="no":
         opc=0
+        return
     elif resp=="si":
-        with open ("inventario.txt","a+") as file:
-            for tipos in inventario:
-                for materiales in tipos:
-                    for objetos in materiales:
-                        for categoria in objetos:
-                            #print(str(categoria))
-                            file.write(str(categoria))
-                            file.write(" ")
-                        file.write("\n")
-                    file.write("\n")
-                file.write("\n")
-        file.close()
+        with open("inventario.json","w") as file:
+            json.dump(inventario,file,indent=4)
+            file.close()
         opc=5
+        return
     else:
         opc=0
-    return
+        return
