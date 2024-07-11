@@ -4,7 +4,7 @@ try:
     with open(os.path.dirname(__file__)+"/inventario.json","r") as file:
         inventario=json.load(file)
 except:
-    0
+    None
 
 def default():
     return
@@ -58,7 +58,6 @@ def obtenerTipo():
         return
     return obtenerMaterial()
     
-
 def obtenerMaterial():
     global material
     print("\n1 Para oro",
@@ -144,7 +143,7 @@ def buscarNombre():
 def opcEditar():
     if index!=-1:
         global opcE
-        print("Para el artículo \"",inventario[tipo-1][material-1][index][0],"\"",sep="")
+        print("\nPara el artículo \"",inventario[tipo-1][material-1][index][0],"\"",sep="")
         print("Ingrese",
               "1 Para editar nombre",
               "2 Para editar cantidad",
@@ -225,12 +224,15 @@ def imprimirTabla():
                 print("NOMBRE\t\t","CANTIDAD\t","PRECIO")
                 for objetos in material:
                     for i in range(len(objetos)):
-                        print(objetos[i],end="\t\t")
+                        if i==2:
+                            print("$",objetos[i],sep="",end="\t\t")
+                        else:
+                            print(objetos[i],end="\t\t")
                     print()
             else:
                 x+=1
     if x==6:
-        print("Inventario vacio")                   
+        print("\nInventario vacio")                   
     return
                     
 def salir():
